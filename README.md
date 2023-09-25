@@ -7,7 +7,7 @@ This is my basic portfolio project for intern or junior java developer positions
 ## Description
 
 The airport management API database consists of below tables:
-1. Carriers
-    1. id - Integer
-    2. name - String
-    3. active - Boolean
+- Carriers
+    - id - Integer
+    - name - String
+    - active - Boolean
