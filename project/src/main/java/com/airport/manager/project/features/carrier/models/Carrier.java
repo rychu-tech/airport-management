@@ -1,15 +1,15 @@
 package com.airport.manager.project.features.carrier.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name="carriers")
 public class Carrier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
+    @Column(name="name", unique=true)
     private String name;
     private Boolean active = true;
 
