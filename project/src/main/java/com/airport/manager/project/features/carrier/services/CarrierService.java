@@ -20,6 +20,14 @@ public class CarrierService {
         catch (Exception e) {
             throw new CarrierNameExistsException("Carrier with such name exists!");
         }
+    }
 
+    public Carrier findById(Long carrierId) {
+        return carrierRepository.findById(carrierId).orElse(null);
+    }
+
+    public Carrier deleteCarrier(Carrier carrier) {
+        carrier.setActive(false);
+        return carrierRepository.save(carrier);
     }
 }

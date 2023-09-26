@@ -18,8 +18,8 @@ import java.util.List;
 @RequestMapping("/api/carriers")
 public class CarrierController {
 
-    private CarrierService carrierService;
-    @Autowired
+    private final CarrierService carrierService;
+
     public CarrierController(CarrierService carrierService) {
         this.carrierService = carrierService;
     }
@@ -32,7 +32,16 @@ public class CarrierController {
         catch (CarrierNameExistsException e) {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(new ErrorResponse(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY.value()));
         }
+    }
 
+    @DeleteMapping("/{carrierId}")
+    public ResponseEntity<?> deleteCarrier(@PathVariable Long carrierId) {
+        Carrier carrier = carrierService.findById(carrierId);
+        if (carrier == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Carrier with such id was not found", HttpStatus.NOT_FOUND.value()));
+        }
+        carrierService.deleteCarrier(carrier);
+        return ResponseEntity.ok("Carrier has been successfully deleted");
     }
 
 
