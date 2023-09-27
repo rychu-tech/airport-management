@@ -8,7 +8,7 @@ public class ErrorResponse {
     private int code;
 
     @JsonCreator
-    public ErrorResponse(@JsonProperty("message") String message, @JsonProperty("code") int code) {
+    public ErrorResponse(String message, int code) {
         this.message = message;
         this.code = code;
     }

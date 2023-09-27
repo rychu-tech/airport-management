@@ -1,8 +1,12 @@
 package com.airport.manager.project.features.carrier.models;
 
+import com.airport.manager.project.features.carrier.listeners.CarrierListener;
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
+@EntityListeners(CarrierListener.class)
 @Table(name="carriers")
 public class Carrier {
     @Id
@@ -11,6 +15,13 @@ public class Carrier {
     private Long id;
     @Column(name="name", unique=true)
     private String name;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at", nullable = false)
+    private Date updatedAt;
     private Boolean active = true;
 
     public Carrier() {}
@@ -27,6 +38,22 @@ public class Carrier {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public Boolean getActive() {
