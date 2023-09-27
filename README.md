@@ -1,5 +1,7 @@
 # Airport Management
 
+## PLEASE NOTE: IN PROGRESS
+
 ## Introduction
 
 This is my basic portfolio project for intern or junior java developer positions. Please note that I am a beginner and a huge part of code in this repo needs refactor and could be done better / differently.
