@@ -35,5 +35,10 @@ public class CarrierController {
         return carrierService.editCarrier(carrierId, carrier);
     }
 
+    @PatchMapping("/{carrierId}")
+    public Carrier restoreCarrier(@PathVariable Long carrierId) {
+        return carrierService.restoreCarrierById(carrierId);
+    }
+
 
 }
