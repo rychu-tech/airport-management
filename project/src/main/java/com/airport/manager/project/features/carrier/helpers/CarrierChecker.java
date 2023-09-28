@@ -4,8 +4,6 @@ import com.airport.manager.project.features.carrier.exceptions.CarrierNameExists
 import com.airport.manager.project.features.carrier.exceptions.CarrierNotFoundException;
 import com.airport.manager.project.features.carrier.models.Carrier;
 import com.airport.manager.project.features.carrier.repositories.CarrierRepository;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -1,7 +1,5 @@
 package com.airport.manager.project.features.carrier.services;
 
-import com.airport.manager.project.features.carrier.exceptions.CarrierNameExistsException;
-import com.airport.manager.project.features.carrier.exceptions.CarrierNotFoundException;
 import com.airport.manager.project.features.carrier.helpers.CarrierChecker;
 import com.airport.manager.project.features.carrier.models.Carrier;
 import com.airport.manager.project.features.carrier.repositories.CarrierRepository;
@@ -23,7 +21,7 @@ public class CarrierService {
         this.carrierRepository = carrierRepository;
         this.carrierChecker = carrierChecker;
     }
-    public Carrier addCarrier(Carrier carrier) throws CarrierNameExistsException {
+    public Carrier addCarrier(Carrier carrier) {
         carrierChecker.checkCarrierName(carrier.getName());
         return carrierRepository.save(carrier);
     }
