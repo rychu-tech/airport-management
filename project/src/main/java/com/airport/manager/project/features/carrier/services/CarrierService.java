@@ -5,10 +5,12 @@ import com.airport.manager.project.features.carrier.models.Carrier;
 import com.airport.manager.project.features.carrier.repositories.CarrierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class CarrierService {
     private CarrierRepository carrierRepository;
     private CarrierChecker carrierChecker;
@@ -33,6 +35,12 @@ public class CarrierService {
     public Carrier deleteCarrierById(Long carrierId) {
         Carrier carrier = carrierChecker.checkCarrierId(carrierId);
         carrier.setActive(false);
+        return carrierRepository.save(carrier);
+    }
+
+    public Carrier restoreCarrierById(Long carrierId) {
+        Carrier carrier = carrierChecker.checkCarrierId(carrierId);
+        carrier.setActive(true);
         return carrierRepository.save(carrier);
     }
 
