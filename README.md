@@ -14,4 +14,4 @@ This is my basic portfolio project for intern or junior java developer positions
 | DEL | /carriers/{id} |  | Changes the carrier to inactive |
 | PUT | /carriers/{id} | name: string | Changes the given carrier's properties |
 | GET | /carriers |  | Returns the list of carriers |
-| PATCH | /carriers/{id} |  | TODO: Changes the carrier back to active |
+| PATCH | /carriers/{id} |  | Changes the carrier back to active |
