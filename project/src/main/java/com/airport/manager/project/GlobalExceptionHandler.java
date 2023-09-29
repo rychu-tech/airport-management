@@ -1,5 +1,6 @@
 package com.airport.manager.project;
 
+import com.airport.manager.project.features.airplane.exceptions.AirplaneStatusNotFoundException;
 import com.airport.manager.project.features.carrier.exceptions.CarrierNameExistsException;
 import com.airport.manager.project.features.carrier.exceptions.CarrierNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(CarrierNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleCustomException(CarrierNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(AirplaneStatusNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCustomException(AirplaneStatusNotFoundException ex) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
