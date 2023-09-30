@@ -40,3 +40,5 @@ This application is a simulation of airport management. Below you can find the l
 - [ ] Add timestamps to users
 - [ ] Add active column to users
 - [ ] Add more detailed feature description
+- [ ] Add feature tests !!!
+- [ ] Add response codes description
