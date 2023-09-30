@@ -30,6 +30,7 @@ This application is a simulation of airport management. Below you can find the l
 | TYPE | URI | BODY | EFFECT |
 |---|---|---|---|
 | POST | /users/register | first_name: string, last_name: string, email: string, password: string | Adds user of type client |
+| POST | /users/login | email: string, password: string | Returns bearer token which can be used for authentication |
 
 ## TODO List
 - [ ] Add changing airplane status
