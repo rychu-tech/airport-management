@@ -1,8 +1,10 @@
 package com.airport.manager.project.features.airplane.models;
 
-import com.airport.manager.project.features.airplane.enums.AirplaneStatusEnum;
 import com.airport.manager.project.features.carrier.models.Carrier;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name="airplanes")
@@ -16,6 +18,7 @@ public class Airplane {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="carrier_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Carrier carrier;
 
     @Column(name="seats_number")
@@ -23,6 +26,7 @@ public class Airplane {
 
     @ManyToOne
     @JoinColumn(name="airplane_status_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private AirplaneStatus airplaneStatus;
 
     public Airplane(String name, Carrier carrier, Integer seatsNumber, AirplaneStatus airplaneStatus) {
@@ -31,6 +35,8 @@ public class Airplane {
         this.seatsNumber = seatsNumber;
         this.airplaneStatus = airplaneStatus;
     }
+
+    public Airplane() {}
 
     public Long getId() {
         return id;

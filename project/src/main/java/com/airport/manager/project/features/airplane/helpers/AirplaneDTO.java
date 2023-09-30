@@ -1,10 +1,37 @@
 package com.airport.manager.project.features.airplane.helpers;
 
 public class AirplaneDTO {
+    private Long id;
     private String name;
     private Integer seats_number;
     private Long carrier_id;
     private Long airplane_status_id;
+    private String carrier_name;
+    private String airplane_status_name;
+
+    public String getCarrier_name() {
+        return carrier_name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCarrier_name(String carrier_name) {
+        this.carrier_name = carrier_name;
+    }
+
+    public String getAirplane_status_name() {
+        return airplane_status_name;
+    }
+
+    public void setAirplane_status_name(String airplane_status_name) {
+        this.airplane_status_name = airplane_status_name;
+    }
 
     public String getName() {
         return name;
