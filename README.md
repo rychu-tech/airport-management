@@ -4,7 +4,8 @@
 
 ## Description
 
-This is my basic portfolio project for intern or junior java developer positions. Please note that I am a beginner and a huge part of code in this repo needs refactor and could be done better / differently.
+Basic portfolio project for intern or junior java developer positions. 
+This application is a simulation of airport management. Below you can find the list of endpoints for all features of this app.
 
 ## Carriers
 
@@ -38,3 +39,4 @@ This is my basic portfolio project for intern or junior java developer positions
 - [ ] Add timestamps to airplanes
 - [ ] Add timestamps to users
 - [ ] Add active column to users
+- [ ] Add more detailed feature description
