@@ -15,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 public class SpringSecurity {
     @Autowired
     private UserDetailsService userDetailsService;

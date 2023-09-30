@@ -20,3 +20,4 @@ public class ProjectApplication {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+}

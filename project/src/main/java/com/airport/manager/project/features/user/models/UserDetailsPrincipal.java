@@ -18,9 +18,6 @@ public class UserDetailsPrincipal implements UserDetails {
         List<GrantedAuthority> roles = new ArrayList<>();
         user.getRoles().forEach(role -> {
             roles.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
-            System.out.println("-----");
-            System.out.println(role.getName());
-            System.out.println("======");
         });
         return roles;
     }
