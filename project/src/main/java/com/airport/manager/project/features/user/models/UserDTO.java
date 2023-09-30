@@ -1,5 +1,6 @@
 package com.airport.manager.project.features.user.models;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -24,4 +25,6 @@ public class UserDTO {
     private String email;
     @NotEmpty(message = "Password should not be empty!")
     private String password;
+    @Nullable
+    private String token;
 }
