@@ -9,11 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
 @Service
 @Transactional
 public class CarrierService {
-    private CarrierRepository carrierRepository;
-    private CarrierChecker carrierChecker;
+    private final CarrierRepository carrierRepository;
+    private final CarrierChecker carrierChecker;
     @Autowired
     public CarrierService(
             CarrierRepository carrierRepository,
@@ -26,10 +27,6 @@ public class CarrierService {
     public Carrier addCarrier(Carrier carrier) {
         carrierChecker.checkCarrierName(carrier.getName());
         return carrierRepository.save(carrier);
-    }
-
-    public Carrier findById(Long carrierId) {
-        return carrierRepository.findById(carrierId).orElse(null);
     }
 
     public Carrier deleteCarrierById(Long carrierId) {

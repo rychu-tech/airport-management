@@ -1,5 +1,6 @@
-package com.airport.manager.project;
+package com.airport.manager.project.exception_handlers;
 
+import com.airport.manager.project.exception_handlers.ErrorResponse;
 import com.airport.manager.project.features.airplane.exceptions.AirplaneSeatsNumberInvalidException;
 import com.airport.manager.project.features.airplane.exceptions.AirplaneStatusNotFoundException;
 import com.airport.manager.project.features.carrier.exceptions.CarrierNameExistsException;

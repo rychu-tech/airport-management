@@ -1,4 +1,4 @@
-package com.airport.manager.project;
+package com.airport.manager.project.exception_handlers;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

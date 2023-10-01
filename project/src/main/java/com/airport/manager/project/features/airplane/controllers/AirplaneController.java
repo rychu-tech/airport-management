@@ -1,6 +1,6 @@
 package com.airport.manager.project.features.airplane.controllers;
 
-import com.airport.manager.project.features.airplane.helpers.AirplaneDTO;
+import com.airport.manager.project.features.airplane.models.AirplaneDTO;
 import com.airport.manager.project.features.airplane.models.Airplane;
 import com.airport.manager.project.features.airplane.services.AirplaneService;
 import org.springframework.web.bind.annotation.*;

@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CarrierRepository extends JpaRepository<Carrier, Long> {
-    // Custom query methods
     Carrier findByName(String name);
     List<Carrier> findByNameAndIdNot(String carrierName, Long carrierId);
 }
