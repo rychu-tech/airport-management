@@ -41,5 +41,9 @@ This application is a simulation of airport management. Below you can find the l
 - [ ] Add timestamps to users
 - [ ] Add active column to users
 - [ ] Add more detailed feature description
-- [ ] Add feature tests !!!
+- [ X ] Add tests for carrier and airplanes 
+- [ ] Add tests for user authentication
 - [ ] Add response codes description
+
+## BUGS TO FIX
+- [ ] There is a bug in tests when I try to add test to throw Exceptions in addAirplane I get response - Expected {exception_name} to be thrown, but nothing was thrown.
