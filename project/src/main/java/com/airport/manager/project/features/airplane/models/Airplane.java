@@ -3,11 +3,18 @@ package com.airport.manager.project.features.airplane.models;
 import com.airport.manager.project.features.carrier.models.Carrier;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.io.Serializable;
 
 @Entity
 @Table(name="airplanes")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Airplane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,44 +40,6 @@ public class Airplane {
         this.name = name;
         this.carrier = carrier;
         this.seatsNumber = seatsNumber;
-        this.airplaneStatus = airplaneStatus;
-    }
-
-    public Airplane() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Carrier getCarrier() {
-        return carrier;
-    }
-
-    public Integer getSeatsNumber() {
-        return seatsNumber;
-    }
-
-    public AirplaneStatus getAirplaneStatus() {
-        return airplaneStatus;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCarrier(Carrier carrier) {
-        this.carrier = carrier;
-    }
-
-    public void setSeatsNumber(Integer seatsNumber) {
-        this.seatsNumber = seatsNumber;
-    }
-
-    public void setAirplaneStatus(AirplaneStatus airplaneStatus) {
         this.airplaneStatus = airplaneStatus;
     }
 }

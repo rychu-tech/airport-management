@@ -2,14 +2,18 @@ package com.airport.manager.project.features.airplane.models;
 
 import com.airport.manager.project.features.airplane.enums.AirplaneStatusEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="airplane_statuses")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class AirplaneStatus {
-    public AirplaneStatus() {}
-    public AirplaneStatus(AirplaneStatusEnum enumValue) {
-        this.setAirplaneStatus(enumValue);
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -18,16 +22,4 @@ public class AirplaneStatus {
     @Enumerated(EnumType.STRING)
     @Column(name="name")
     private AirplaneStatusEnum name;
-
-    public Long getId() {
-        return id;
-    }
-
-    public AirplaneStatusEnum getName() {
-        return name;
-    }
-
-    public void setAirplaneStatus(AirplaneStatusEnum airplaneStatus) {
-        this.name = airplaneStatus;
-    }
 }
