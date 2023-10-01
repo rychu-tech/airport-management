@@ -1,7 +1,7 @@
 package com.airport.manager.project.features.airplane.services;
 
 import com.airport.manager.project.features.airplane.helpers.AirplaneChecker;
-import com.airport.manager.project.features.airplane.helpers.AirplaneDTO;
+import com.airport.manager.project.features.airplane.models.AirplaneDTO;
 import com.airport.manager.project.features.airplane.helpers.AirplaneMapper;
 import com.airport.manager.project.features.airplane.helpers.AirplaneStatusChecker;
 import com.airport.manager.project.features.airplane.models.Airplane;

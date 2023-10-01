@@ -35,7 +35,6 @@ public class TokenAuthFilter extends OncePerRequestFilter {
         }
 
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            System.out.println("ELO");
             UserDetailsPrincipal userDetailsPrincipal = userDetailsService.loadUserByEmail(email);
             if (jwtService.validateToken(token, userDetailsPrincipal)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetailsPrincipal, null, userDetailsPrincipal.getAuthorities());

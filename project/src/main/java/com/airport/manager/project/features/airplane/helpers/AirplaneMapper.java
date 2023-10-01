@@ -1,6 +1,7 @@
 package com.airport.manager.project.features.airplane.helpers;
 
 import com.airport.manager.project.features.airplane.models.Airplane;
+import com.airport.manager.project.features.airplane.models.AirplaneDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;

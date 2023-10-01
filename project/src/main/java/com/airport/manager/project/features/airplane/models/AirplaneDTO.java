@@ -1,4 +1,4 @@
-package com.airport.manager.project.features.airplane.helpers;
+package com.airport.manager.project.features.airplane.models;
 
 public class AirplaneDTO {
     private Long id;

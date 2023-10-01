@@ -4,30 +4,32 @@ import com.airport.manager.project.features.carrier.exceptions.CarrierNameExists
 import com.airport.manager.project.features.carrier.exceptions.CarrierNotFoundException;
 import com.airport.manager.project.features.carrier.models.Carrier;
 import com.airport.manager.project.features.carrier.repositories.CarrierRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class CarrierChecker {
-    private CarrierRepository carrierRepository;
+    private final CarrierRepository carrierRepository;
+    @Autowired
     public CarrierChecker(CarrierRepository carrierRepository) {
         this.carrierRepository = carrierRepository;
     }
-    public void checkCarrierName(String carrierName) {
+    public void checkCarrierName(String carrierName) throws CarrierNameExistsException {
         Carrier carrierLookup = carrierRepository.findByName(carrierName);
         if (carrierLookup != null) {
             throw new CarrierNameExistsException();
         }
     }
 
-    public void checkCarrierName(Long carrierId, String carrierName) {
+    public void checkCarrierName(Long carrierId, String carrierName) throws CarrierNameExistsException {
         List<Carrier> carrierLookup = carrierRepository.findByNameAndIdNot(carrierName, carrierId);
         if (!carrierLookup.isEmpty()) {
             throw new CarrierNameExistsException();
         }
     }
-    public Carrier checkCarrierId(Long carrierId) {
+    public Carrier checkCarrierId(Long carrierId) throws CarrierNotFoundException {
         Carrier carrier = carrierRepository.findById(carrierId).orElse(null);
         if (carrier == null) {
             throw new CarrierNotFoundException();
