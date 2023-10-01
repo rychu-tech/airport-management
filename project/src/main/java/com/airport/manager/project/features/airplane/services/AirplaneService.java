@@ -41,7 +41,6 @@ public class AirplaneService {
     }
 
     public Airplane addAirplane(AirplaneDTO airplaneData) {
-        System.out.println(airplaneData.getAirplane_status_id());
         AirplaneStatus airplaneStatus = airplaneStatusChecker.checkAirplaneStatusId(airplaneData.getAirplane_status_id());
         Carrier carrier = carrierChecker.checkCarrierId(airplaneData.getCarrier_id());
         airplaneChecker.checkAirplaneSeatsNumber(airplaneData.getSeats_number());

@@ -15,10 +15,6 @@ public class AirplaneStatusService {
         this.airplaneStatusRepository = airplaneStatusRepository;
     }
 
-    public AirplaneStatus addAirplaneStatus(AirplaneStatus airplaneStatus) {
-        return airplaneStatusRepository.save(airplaneStatus);
-    }
-
     public List<AirplaneStatus> findAll() {
         List<AirplaneStatus> result = airplaneStatusRepository.findAll();
         return result;

@@ -35,4 +35,9 @@ public class Carrier {
         this.name = name;
         this.active = active;
     }
+
+    public Carrier(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
