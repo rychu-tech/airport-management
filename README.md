@@ -46,4 +46,4 @@ This application is a simulation of airport management. Below you can find the l
 - [ ] Add response codes description
 
 ## BUGS TO FIX
-- [ ] There is a bug in tests when I try to add test to throw Exceptions in addAirplane I get response - Expected {exception_name} to be thrown, but nothing was thrown.
+- [X] There is a bug in tests when I try to add test to throw Exceptions in addAirplane I get response - Expected {exception_name} to be thrown, but nothing was thrown. Found and fixed the issue. It turned out that I had to init mocks before each tests and I had to add one more @Mock.
