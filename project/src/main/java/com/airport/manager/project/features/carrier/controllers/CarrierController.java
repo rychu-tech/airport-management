@@ -2,6 +2,10 @@ package com.airport.manager.project.features.carrier.controllers;
 
 import com.airport.manager.project.features.carrier.models.Carrier;
 import com.airport.manager.project.features.carrier.services.CarrierService;
+import com.airport.manager.project.features.user.models.UserDetailsPrincipal;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +31,9 @@ public class CarrierController {
 
     @GetMapping
     public List<Carrier> getCarrierList() {
+//        Viewing logged in user id
+//        @AuthenticationPrincipal UserDetailsPrincipal userDetailsPrincipal)
+//        System.out.println(userDetailsPrincipal.getId());
         return carrierService.findAll();
     }
 
