@@ -4,6 +4,8 @@ import com.airport.manager.project.features.carrier.helpers.CarrierChecker;
 import com.airport.manager.project.features.carrier.models.Carrier;
 import com.airport.manager.project.features.carrier.repositories.CarrierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
