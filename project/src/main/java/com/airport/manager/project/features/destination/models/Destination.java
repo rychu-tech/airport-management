@@ -1,5 +1,7 @@
 package com.airport.manager.project.features.destination.models;
 
+import com.airport.manager.project.features.carrier.listeners.CarrierListener;
+import com.airport.manager.project.features.destination.listeners.DestinationListener;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +16,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@EntityListeners(DestinationListener.class)
 public class Destination {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

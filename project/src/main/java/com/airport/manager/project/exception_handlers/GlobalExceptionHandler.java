@@ -5,6 +5,8 @@ import com.airport.manager.project.features.airplane.exceptions.AirplaneSeatsNum
 import com.airport.manager.project.features.airplane.exceptions.AirplaneStatusNotFoundException;
 import com.airport.manager.project.features.carrier.exceptions.CarrierNameExistsException;
 import com.airport.manager.project.features.carrier.exceptions.CarrierNotFoundException;
+import com.airport.manager.project.features.destination.exceptions.DestinationNameExistsException;
+import com.airport.manager.project.features.destination.exceptions.DestinationNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,6 +35,18 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AirplaneSeatsNumberInvalidException.class)
     public ResponseEntity<ErrorResponse> handleCustomException(AirplaneSeatsNumberInvalidException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DestinationNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCustomException(DestinationNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DestinationNameExistsException.class)
+    public ResponseEntity<ErrorResponse> handleCustomException(DestinationNameExistsException ex) {
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), HttpStatus.BAD_REQUEST.value());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
