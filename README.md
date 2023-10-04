@@ -32,6 +32,16 @@ This application is a simulation of airport management. Below you can find the l
 | POST | /users/register | first_name: string, last_name: string, email: string, password: string | Adds user of type client |
 | POST | /users/login | email: string, password: string | Returns bearer token which can be used for authentication |
 
+## Destinations
+
+| TYPE | URI | BODY | EFFECT |
+|---|---|---|---|
+| POST | /destinations | name: string | Adds new destination |
+| PUT | /destinations/{id} | name: string | Edits given destination with provided name |
+| PATCH | /destinations/{id} | | Restores the entity |
+| DELETE | /destinations/{id} | | Removes the entity |
+| GET | /destinations | | Returns the list of destinations |
+
 ## TODO List
 - [ ] Add changing airplane status
 - [ ] Add changing airplane carrier
