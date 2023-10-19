@@ -40,9 +40,9 @@ public class GateHistory {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
 
-    public GateHistory(Gate gateId, User userId, String comment) {
-        this.gate = gateId;
-        this.user = userId;
+    public GateHistory(Gate gate, User user, String comment) {
+        this.gate = gate;
+        this.user = user;
         this.comment = comment;
     }
 }

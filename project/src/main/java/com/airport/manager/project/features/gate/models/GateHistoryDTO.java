@@ -14,14 +14,15 @@ import java.util.Date;
 @AllArgsConstructor
 public class GateHistoryDTO {
     private Long id;
-    private Gate gate_id;
-    private User user_id;
+    private Long gate_id;
+    private Long user_id;
+    private String user_name;
     private String comment;
     private Date created_at;
 
-    public GateHistoryDTO(Gate gate, User user, String comment) {
-        this.gate_id = gate;
-        this.user_id = user;
+    public GateHistoryDTO(Long gateId, Long userId, String comment) {
+        this.gate_id = gateId;
+        this.user_id = userId;
         this.comment = comment;
     }
 }

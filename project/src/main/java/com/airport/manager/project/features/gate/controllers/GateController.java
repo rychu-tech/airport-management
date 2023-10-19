@@ -5,12 +5,8 @@ import com.airport.manager.project.features.gate.models.GateDTO;
 import com.airport.manager.project.features.gate.services.GateService;
 import com.airport.manager.project.features.user.models.User;
 import com.airport.manager.project.features.user.models.UserDetailsPrincipal;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/gates")
@@ -28,4 +24,14 @@ public class GateController {
         User user = userDetailsPrincipal.getUser();
         return gateService.addGate(gateDTO, user);
     }
+
+    @GetMapping("/{gateId}")
+    public GateDTO getGate(@PathVariable Long gateId) {
+        return gateService.getGateInDTOFormat(gateId);
+    }
+
+//    @GetMapping
+//    public List<GateDTO> getGateList() {
+//        return gateService.getAllGatesInDTOFormat();
+//    }
 }

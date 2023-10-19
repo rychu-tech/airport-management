@@ -1,6 +1,7 @@
 package com.airport.manager.project.features.gate.services;
 
 import com.airport.manager.project.features.gate.helpers.GateChecker;
+import com.airport.manager.project.features.gate.helpers.GateMapper;
 import com.airport.manager.project.features.gate.models.Gate;
 import com.airport.manager.project.features.gate.models.GateDTO;
 import com.airport.manager.project.features.gate.models.GateHistoryDTO;
@@ -12,25 +13,29 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
-
 public class GateService {
     private final GateRepository gateRepository;
     private final GateChecker gateChecker;
     private final GateHistoryService gateHistoryService;
+    private final GateMapper gateMapper;
 
 
     @Autowired
     public GateService(
             GateRepository gateRepository,
             GateChecker gateChecker,
-            GateHistoryService gateHistoryService
+            GateHistoryService gateHistoryService,
+            GateMapper gateMapper
     )
     {
         this.gateRepository = gateRepository;
         this.gateChecker = gateChecker;
         this.gateHistoryService = gateHistoryService;
+        this.gateMapper = gateMapper;
     }
 
     public Gate addGate(GateDTO gateDTO, User user) {
@@ -40,12 +45,18 @@ public class GateService {
         gateRepository.save(gate);
 
         GateHistoryDTO gateHistoryDTO = new GateHistoryDTO(
-                gate,
-                user,
+                gate.getId(),
+                user.getId(),
                 "Created"
         );
         gateHistoryService.addGateHistory(gateHistoryDTO);
 
         return gate;
+    }
+
+    public GateDTO getGateInDTOFormat(Long gateId) {
+        Gate gate = gateRepository.findById(gateId).orElse(null);
+        return gateMapper.mapToDTO(gate);
+
     }
 }
