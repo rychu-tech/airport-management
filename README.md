@@ -7,6 +7,15 @@
 Basic portfolio project for intern or junior java developer positions. 
 This application is a simulation of airport management. Below you can find the list of endpoints for all features of this app.
 
+## Setup
+
+The setup process is very easy. You need to navigate to project folder. Inside, run command:
+```
+docker-compose up --build
+```
+
+Basic api port is 8080 and database port is 3306.
+
 ## Carriers
 
 | TYPE | URI | BODY | EFFECT |
