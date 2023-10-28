@@ -1,35 +1,34 @@
 package com.airport.manager.project.features.carrier.controllers;
 
+import com.airport.manager.project.ObjectMapperConfig;
+import com.airport.manager.project.features.carrier.helpers.CarrierChecker;
 import com.airport.manager.project.features.carrier.models.Carrier;
 import com.airport.manager.project.features.carrier.repositories.CarrierRepository;
 import com.airport.manager.project.features.carrier.services.CarrierService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc(addFilters = false, printOnlyOnFailure = false)
-@Transactional
+@Import(ObjectMapperConfig.class)
 public class CarrierControllerTest {
-    @Autowired private ObjectMapper objectMapper;
+
     @InjectMocks
     private CarrierController carrierController;
 
@@ -39,25 +38,34 @@ public class CarrierControllerTest {
     @Mock
     private CarrierRepository carrierRepository;
 
+    @Mock
+    private CarrierChecker carrierChecker;
+
     @Autowired
+    private ObjectMapper objectMapper;
+
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        mockMvc = MockMvcBuilders.standaloneSetup(carrierController).build();
+
     }
-    private static final String PATH = "/carriers";
 
     @Test
-    public void shouldAddCarrierWith200() throws Exception {
-        Carrier carrier = new Carrier("Test carrier save", true);
-        when(carrierRepository.save(any(Carrier.class))).thenReturn(carrier);
+    public void testAddCarrier() throws Exception {
+        Carrier carrier = new Carrier("TestCarrier", false);
+
+        doNothing().when(carrierChecker).checkCarrierName("TestCarrier");
+        when(carrierRepository.findByName("TestCarrier")).thenReturn(null);
+        when(carrierService.addCarrier(carrier)).thenReturn(carrier);
+
         String requestBody = objectMapper.writeValueAsString(carrier);
 
-        mockMvc.perform(post(PATH)
-                .contentType("application/json")
-                .accept("application/json")
-                .content(requestBody))
+        mockMvc.perform(MockMvcRequestBuilders.post("/carriers")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestBody))
                 .andExpect(status().isOk());
     }
 
@@ -65,10 +73,13 @@ public class CarrierControllerTest {
     public void shouldDeleteCarrierWith200() throws Exception {
         Long carrierId = 1L;
 
+        Carrier savedCarrier = new Carrier(carrierId, "Saved Carrier");
+        when(carrierChecker.checkCarrierId(carrierId)).thenReturn(savedCarrier);
+
         Carrier deletedCarrier = new Carrier("Deleted Carrier", false);
         when(carrierService.deleteCarrierById(carrierId)).thenReturn(deletedCarrier);
 
-        mockMvc.perform(delete(PATH + "/{carrierId}", carrierId)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/carriers/{carrierId}", carrierId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -83,7 +94,7 @@ public class CarrierControllerTest {
 
         when(carrierService.findAll()).thenReturn(carrierList);
 
-        mockMvc.perform(get(PATH)
+        mockMvc.perform(MockMvcRequestBuilders.get("/carriers")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -93,13 +104,14 @@ public class CarrierControllerTest {
     public void shouldEditCarrierWith200() throws Exception {
         Long carrierId = 1L;
 
-        Carrier updatedCarrier = new Carrier("Updated Carrier", true);
+        Carrier updatedCarrier = new Carrier(carrierId, "Saved Carrier", false);
+        when(carrierChecker.checkCarrierId(carrierId)).thenReturn(updatedCarrier);
 
-        when(carrierService.editCarrier(eq(carrierId), any(Carrier.class))).thenReturn(updatedCarrier);
+        when(carrierService.editCarrier(eq(updatedCarrier.getId()), any(Carrier.class))).thenReturn(updatedCarrier);
 
         String requestBody = objectMapper.writeValueAsString(updatedCarrier);
 
-        mockMvc.perform(put(PATH + "/{carrierId}", carrierId)
+        mockMvc.perform(MockMvcRequestBuilders.put("/carriers/{carrierId}", updatedCarrier.getId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(requestBody))
@@ -110,17 +122,17 @@ public class CarrierControllerTest {
     public void shouldRestoreCarrierWith200() throws Exception {
         Long carrierId = 1L;
 
-        Carrier restoredCarrier = new Carrier("Restored Carrier", true);
+        Carrier savedCarrier = new Carrier(carrierId, "Saved Carrier", false);
+        when(carrierChecker.checkCarrierId(carrierId)).thenReturn(savedCarrier);
 
-        when(carrierService.restoreCarrierById(carrierId)).thenReturn(restoredCarrier);
+        Carrier restoredCarrier = new Carrier("Deleted Carrier", true);
+        when(carrierService.deleteCarrierById(carrierId)).thenReturn(restoredCarrier);
 
-        mockMvc.perform(patch(PATH + "/{carrierId}", carrierId)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/carriers/{carrierId}", carrierId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
-
-
 
 
 }

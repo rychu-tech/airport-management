@@ -40,4 +40,10 @@ public class Carrier {
         this.id = id;
         this.name = name;
     }
+
+    public Carrier(Long id, String name, Boolean active) {
+        this.id = id;
+        this.name = name;
+        this.active = active;
+    }
 }
