@@ -11,6 +11,9 @@ This application is a simulation of airport management. Below you can find the l
 
 The setup process is very easy. You need to navigate to project folder. Inside, run command:
 ```
+mvn install
+```
+```
 docker-compose up --build
 ```
 
