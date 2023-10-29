@@ -22,6 +22,7 @@ public class GateHistoryMapper {
                 map().setUser_name(source.getUser().getName());
                 map().setGate_id(source.getGate().getId());
                 map().setUser_id(source.getUser().getId());
+                map().setCreated_at(source.getCreatedAt());
             }
         });
     }
