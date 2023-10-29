@@ -66,6 +66,8 @@ Basic api port is 8080 and database port is 3306.
 - [X] Add tests for carrier and airplanes 
 - [ ] Add tests for user authentication
 - [ ] Add response codes description
+- [ ] Add test for gates
+- [ ] Add API description for gates
 
 ## BUGS TO FIX
 - [X] There is a bug in tests when I try to add test to throw Exceptions in addAirplane I get response - Expected {exception_name} to be thrown, but nothing was thrown. Found and fixed the issue. It turned out that I had to init mocks before each tests and I had to add one more @Mock.
