@@ -54,6 +54,22 @@ Basic api port is 8080 and database port is 3306.
 | DELETE | /destinations/{id} | | Removes the entity |
 | GET | /destinations | | Returns the list of destinations |
 
+## Gates
+| TYPE | URI | BODY | EFFECT |
+|---|---|---|---|
+| POST | /gates | name: string | Adds new gate |
+| GET | /gates | | Returns the list of gates |
+| GET | /gates/{id} | | Returns the gate with given id |
+| PATCH | /gates/{id} | active: boolean, comment: string | Adds comment to gate and saves it to history |
+
+## Flights
+| TYPE | URI | BODY | EFFECT |
+|---|---|---|---|
+| POST | /flights | code: string, flight_status_id: int, airplane_id: int, destination_id: int, gate_id: int, departure_time: string (format YYYY-MM-DDTH:i:s) | Adds flight |
+| GET | /flights | | Returns flights list |
+| GET | /flights/{id} | | Returns flight with given id |
+
+
 ## TODO List
 - [ ] Add changing airplane status
 - [ ] Add changing airplane carrier
@@ -68,7 +84,14 @@ Basic api port is 8080 and database port is 3306.
 - [ ] Add response codes description
 - [ ] Add test for gates
 - [ ] Add API description for gates
+- [ ] Add tests for flights
+- [ ] Add changing flight status
+- [ ] Add disabling flight
+- [ ] Add integration with currency exchange API
+- [ ] Add money depositing
+- [ ] Add buying tickets 
 
 ## BUGS TO FIX
 - [X] There is a bug in tests when I try to add test to throw Exceptions in addAirplane I get response - Expected {exception_name} to be thrown, but nothing was thrown. Found and fixed the issue. It turned out that I had to init mocks before each tests and I had to add one more @Mock.
 - [ ] If user not found in DB, return error on login.
+- [ ] Some cases were not tested and do not have predicted statuses
