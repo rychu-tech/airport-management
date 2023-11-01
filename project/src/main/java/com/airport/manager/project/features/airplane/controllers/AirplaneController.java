@@ -24,4 +24,6 @@ public class AirplaneController {
     public List<AirplaneDTO> getAllAirplanesInDTOFormat() {
         return airplaneService.getAllAirplanesInDTOFormat();
     }
+
+
 }

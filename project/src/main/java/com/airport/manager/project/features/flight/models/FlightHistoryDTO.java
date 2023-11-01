@@ -1,5 +1,6 @@
 package com.airport.manager.project.features.flight.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class FlightHistoryDTO {
     private Long user_id;
     private String user_name;
     private String comment;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Date created_at;
 
     public FlightHistoryDTO(Long flightId, Long userId, String comment) {

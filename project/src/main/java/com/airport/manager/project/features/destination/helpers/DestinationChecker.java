@@ -1,6 +1,7 @@
 package com.airport.manager.project.features.destination.helpers;
 
 import com.airport.manager.project.features.destination.exceptions.DestinationNameExistsException;
+import com.airport.manager.project.features.destination.exceptions.DestinationNotActiveException;
 import com.airport.manager.project.features.destination.exceptions.DestinationNotFoundException;
 import com.airport.manager.project.features.destination.models.Destination;
 import com.airport.manager.project.features.destination.repositories.DestinationRepository;
@@ -34,6 +35,13 @@ public class DestinationChecker {
         List<Destination> destination = destinationRepository.findByNameAndIdNot(name, id);
         if (!destination.isEmpty()) {
             throw new DestinationNameExistsException();
+        }
+    }
+
+    public void checkDestinationActive(Long destinationId) throws DestinationNotActiveException {
+        Destination destination = destinationRepository.findById(destinationId).orElse(null);
+        if (destination != null && !destination.getActive()) {
+            throw new DestinationNotActiveException();
         }
     }
 }
