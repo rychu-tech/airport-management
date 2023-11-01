@@ -1,6 +1,7 @@
 package com.airport.manager.project.features.carrier.helpers;
 
 import com.airport.manager.project.features.carrier.exceptions.CarrierNameExistsException;
+import com.airport.manager.project.features.carrier.exceptions.CarrierNotActiveException;
 import com.airport.manager.project.features.carrier.exceptions.CarrierNotFoundException;
 import com.airport.manager.project.features.carrier.models.Carrier;
 import com.airport.manager.project.features.carrier.repositories.CarrierRepository;
@@ -35,5 +36,12 @@ public class CarrierChecker {
             throw new CarrierNotFoundException();
         }
         return carrier;
+    }
+
+    public void checkCarrierActive(Long carrierId) throws CarrierNotActiveException {
+        Carrier carrier = carrierRepository.findById(carrierId).orElse(null);
+        if (carrier != null && !carrier.getActive()) {
+            throw new CarrierNotActiveException();
+        }
     }
 }
