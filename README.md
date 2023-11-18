@@ -83,7 +83,7 @@ Basic api port is 8080 and database port is 3306.
 - [ ] Add tests for user authentication
 - [ ] Add response codes description
 - [ ] Add test for gates
-- [ ] Add API description for gates
+- [X] Add API description for gates
 - [ ] Add tests for flights
 - [ ] Add changing flight status
 - [ ] Add disabling flight
