@@ -13,6 +13,10 @@ The setup process is very easy. You need to navigate to project folder. Inside, 
 ```
 mvn install
 ```
+or
+```
+mvn package "-Dmaven.test.skip"
+```
 ```
 docker-compose up --build
 ```
